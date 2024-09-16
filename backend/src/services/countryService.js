@@ -35,9 +35,19 @@ export async function getCountry(name, iso2) {
 		}),
 	]);
 
+	const listBorders = borders.data.borders.map((country) => ({
+		name: country.commonName,
+		iso2: country.countryCode,
+	}));
+
+	const popInfo = population.data.data.populationCounts;
+
+	const flagUrl = flag.data.data.flag;
+
 	return {
-		borders: borders.data,
-		population: population.data,
-		flag: flag.data,
+		name: borders.data.commonName,
+		borders: listBorders,
+		population: popInfo,
+		flag: flagUrl,
 	};
 }
