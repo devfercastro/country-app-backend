@@ -2,7 +2,8 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "dev": "dotenvx run -- nodemon --verbose"
+    "dev": "dotenvx run -- nodemon --verbose",
+    "start": "node src/index.js"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.14.1",
