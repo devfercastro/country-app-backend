@@ -1,18 +1,40 @@
 import axios from "axios";
 
 /**
+ * @typedef {Object} Country
+ * @property {string} name - The name of the country.
+ * @property {string} iso2 - The country code in ISO 2 format.
+ * @property {number} long - The longitude of the country.
+ * @property {number} lat - The latitude of the country.
+ */
+
+/**
+ * @typedef {Object} CountriesNowAPI
+ * @property {boolean} error - Indicates if there was an error in the request.
+ * @property {string} msg - The error message if there was an error.
+ * @property {Country[]} data - The data returned by the API.
+ */
+
+/**
  * Retrieves a list of countries with their positions.
  *
  * @async
- * @returns {Promise<Object>} A promise that resolves to an object containing country data.
+ * @returns {Promise<Country[]>} A promise that resolves to an array of country data.
  * @throws {Error} If there's an error fetching the countries data.
  */
 export async function getCountries() {
-	const response = await fetch(
+	/**
+	 * @type {import('axios').AxiosResponse<CountriesNowAPI>}
+	 */
+	const response = await axios(
 		`${process.env.BASE_URL_COUNTRIES_NOW}/countries/positions`,
 	);
-	const data = await response.json();
-	return data;
+
+	if (response.data.error) {
+		throw new Error(response.data.msg);
+	}
+
+	return response.data.data;
 }
 
 /**
