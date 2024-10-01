@@ -39,7 +39,7 @@ The server will be running on `http://localhost:<port>`, where `<port>` is defin
 ### 2. Get Country Information
 
 - **Endpoint**: `POST /api/country`
-- **Description**: Retrieves detailed information for a specific country based on its ISO2 code and country name, including population statistics, borders, and the country flag.
+- **Description**: Retrieves detailed information for a specific country based on its ISO2 code and country name, including population statistics (mostly until 2018), borders, and the country flag.
 - **Request Body**: The request body should include either the `iso2` or the `country` field. You can provide both fields, but at least one is required.
     ```json
     {
@@ -60,16 +60,18 @@ The server will be running on `http://localhost:<port>`, where `<port>` is defin
         {
           "name": "Chile",
           "iso2": "CL"
-        }
+        },
+        ...
       ],
       "population": [
         {
           "year": 1960,
           "value": 20481779
         },
+        ...,
         {
-          "year": 2020,
-          "value": 45376763
+          "year": 2018,
+          "value": 44494502
         }
       ],
       "flag": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg"
